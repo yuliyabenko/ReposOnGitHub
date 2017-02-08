@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.List;
+import com.yuliya.retrofittest.model.Repo;
 
 import io.realm.RealmList;
 
@@ -16,11 +16,11 @@ import io.realm.RealmList;
 
 public class RepositoriesAdapter extends RecyclerView.Adapter<RepositoriesAdapter.RepositoriesViewHolder> {
 
-    private RealmList<Repository> repositories = null;
+   // private RealmList<Repo> repositories = null;
 
-    RepositoriesAdapter(RealmList<Repository> repositories){
+   /* RepositoriesAdapter(RealmList<Repo> repositories){
         this.repositories = repositories;
-    }
+    }*/
 
     @Override
     public RepositoriesViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -31,12 +31,13 @@ public class RepositoriesAdapter extends RecyclerView.Adapter<RepositoriesAdapte
 
     @Override
     public void onBindViewHolder(RepositoriesViewHolder holder, int position) {
-        holder.mTextView.setText((int) repositories.get(position).getId());
+       // holder.mTextView.setText((int) repositories.get(position).getId());
     }
 
     @Override
     public int getItemCount() {
-        return repositories == null ? 0 : repositories.size();
+      //  return repositories == null ? 0 : repositories.size();
+        return 0;
     }
 
     public static class RepositoriesViewHolder extends RecyclerView.ViewHolder {
