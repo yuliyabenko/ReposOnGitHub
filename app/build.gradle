@@ -28,8 +28,10 @@ android {
 buildscript {
     ext.retrofitVersion = '2.1.0'
     repositories {
-        mavenCentral()
         jcenter()
+        mavenCentral()
+        mavenLocal()
+        maven { url 'https://github.com/uPhyca/stetho-realm/raw/master/maven-repo' }
     }
     dependencies {
         classpath 'me.tatarka:gradle-retrolambda:3.4.0'
@@ -53,5 +55,6 @@ dependencies {
     compile "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}"
     compile "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
     compile 'com.google.code.gson:gson:2.8.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.3.0'
     testCompile 'junit:junit:4.12'
 }

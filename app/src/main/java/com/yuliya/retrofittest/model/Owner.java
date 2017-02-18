@@ -8,6 +8,8 @@ import io.realm.annotations.PrimaryKey;
 
 public class Owner extends RealmObject {
 
+    public Owner(){}
+
     @SerializedName("login")
     @Expose
     private String login;
