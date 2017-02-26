@@ -3,17 +3,25 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    app:cardElevation="@dimen/view_notes_item_card_elevation"
+    app:cardCornerRadius="@dimen/view_notes_item_corner_radius"
     app:cardUseCompatPadding="true"
-    android:id="@+id/card_view"
+    app:contentPadding="@dimen/view_notes_item_padding"
+    android:id="@+id/cv_repos"
     android:layout_width="match_parent"
     android:layout_height="82dp">
 
     <TextView
-        tools:text="text"
-        android:id="@+id/cv_text_view"
+        tools:text="name"
+        android:id="@+id/cv_tv_name"
         android:layout_height="20dp"
         android:layout_width="match_parent" />
 
-
+    <TextView
+        tools:text="link"
+        android:layout_gravity="bottom"
+        android:id="@+id/cv_tv_link"
+        android:layout_height="20dp"
+        android:layout_width="match_parent" />
 
 </android.support.v7.widget.CardView>
