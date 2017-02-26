@@ -34,8 +34,6 @@ public class ReposActivity extends AppCompatActivity   implements
 
     private SearchView mSearchView;
 
-    private MenuItem searchMenuItem;
-
     private ReposPresenter reposPresenter = new ReposPresenter();
 
     @Override
@@ -76,12 +74,8 @@ public class ReposActivity extends AppCompatActivity   implements
         return true;
     }
 
-
-
     @Override
-    public void onClick(View view) {
-
-    }
+    public void onClick(View view) { }
 
     @Override
     public Context getContext() {
@@ -90,7 +84,7 @@ public class ReposActivity extends AppCompatActivity   implements
 
     @Override
     public void showRepos(List<Repo> repos) {
-        ReposAdapter adapter = new ReposAdapter();
+        ReposAdapter adapter = new ReposAdapter(this);
         mRecyclerView.setAdapter(adapter);
         adapter.setDataSource(repos);
         adapter.setOnItemClickListener( view -> {
@@ -101,9 +95,5 @@ public class ReposActivity extends AppCompatActivity   implements
             intent.putExtra("repo", holder.getRepo().getName());
             startActivity(intent);
         });
-       // Toast.makeText(this, String.valueOf(repos), Toast.LENGTH_SHORT).show();
-
     }
-
-
 }

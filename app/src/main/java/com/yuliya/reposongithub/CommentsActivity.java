@@ -43,9 +43,9 @@ public class CommentsActivity extends AppCompatActivity
         mToolbar = (Toolbar) findViewById(R.id.toolbarComments);
         mToolbar.setTitle(" " + repo + " comments");
         mToolbar.setLogo(R.drawable.ic_github);
-
         setTitle(R.string.activity_comment);
         setSupportActionBar(mToolbar);
+
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(
                 this,
                 RecyclerView.VERTICAL,
@@ -53,7 +53,6 @@ public class CommentsActivity extends AppCompatActivity
         mRecyclerView.setLayoutManager(layoutManager);
 
         commentsPresenter.getComments(user, repo);
-
     }
 
     @Override

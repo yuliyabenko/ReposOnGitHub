@@ -1,5 +1,8 @@
 package com.yuliya.reposongithub.flow.repos.view;
 
+import android.content.Context;
+import android.net.Uri;
+import android.support.customtabs.CustomTabsIntent;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
@@ -8,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.yuliya.reposongithub.ReposActivity;
 import com.yuliya.retrofittest.R;
 import com.yuliya.reposongithub.model.Repo;
 
@@ -18,6 +22,12 @@ import java.util.List;
  */
 
 public class  ReposAdapter extends RecyclerView.Adapter<ReposAdapter.ReposViewHolder> {
+
+    private static Context context = null;
+
+    public ReposAdapter(Context context){
+        this.context = context;
+    }
 
     private List<Repo> repositories = null;
 
@@ -61,13 +71,18 @@ public class  ReposAdapter extends RecyclerView.Adapter<ReposAdapter.ReposViewHo
         TextView mTextViewLink;
         private Repo mRepo;
         private String text;
+        private String url;
 
         public ReposViewHolder(View itemView) {
             super(itemView);
             mTextViewName = (TextView) itemView.findViewById(R.id.cv_tv_name);
             mTextViewLink = (TextView) itemView.findViewById(R.id.cv_tv_link);
             mTextViewLink.setClickable(true);
-            mTextViewLink.setMovementMethod(LinkMovementMethod.getInstance());
+            mTextViewLink.setOnClickListener(view -> {
+                CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+                CustomTabsIntent customTabsIntent = builder.build();
+                customTabsIntent.launchUrl(context, Uri.parse(url));
+            });
             /*CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
             CustomTabsIntent customTabsIntent = builder.build();
             customTabsIntent.launchUrl(itemView.getContext(), Uri.parse(text));*/
@@ -75,7 +90,8 @@ public class  ReposAdapter extends RecyclerView.Adapter<ReposAdapter.ReposViewHo
 
         void bindView(Repo repo){
             mRepo = repo;
-            text = "<a href='" + repo.getHtmlUrl() + "'> " + repo.getName() + " on GitHub </a>";
+            url = repo.getHtmlUrl();
+            text = "<a href='" + url + "'> " + repo.getName() + " on GitHub </a>";
             mTextViewName.setText(repo.getName());
             mTextViewLink.setText(Html.fromHtml(text));
         }
@@ -83,6 +99,15 @@ public class  ReposAdapter extends RecyclerView.Adapter<ReposAdapter.ReposViewHo
         public Repo getRepo(){
             return mRepo;
         }
+
+//        @Override
+//        public void onClick(View view) {
+//            view.setOnClickListener(view1 -> {
+//                CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+//                CustomTabsIntent customTabsIntent = builder.build();
+//                customTabsIntent.launchUrl(view.getContext(), Uri.parse(text));
+//            });
+//        }
     }
 
 
